@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mata Mosca</title>
+    <link rel="shortcut icon" href="imagens/mosca.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilo.css">
+    <script>
+        function iniciarJogo(){
+  
+            let nivel = document.getElementById('nivel').value
+            let derrota = new Audio("./sons/derrota.mp3")
+
+            if(nivel === ''){
+                alert("Selecione um nível para iniciar o jogo")
+                derrota.play()
+                document.getElementById('nivel').focus()
+                return false
+            }
+
+            window.location.href = "app.html?" + nivel
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center">
+                    <img src="./imagens/mosca.png" alt="jogo" height="400px">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center">
+                    <div class="mb-3">
+                        <h1 class="display-1 text-light fw-bold" style="text-shadow: 10px 10px 10px black;">Mata Mosca</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center">
+                    <div class="mb-3">
+                        <select name="select" id="nivel" class="form-control text-center">
+                            <option value="">-- Selecione o nível --</option>
+                            <option value="normal">Normal</option>
+                            <option value="dificil">Difícil</option>
+                            <option value="chucknorris">Chuck Norris</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center">
+                    <button id="inicio" type="button" class="btn btn-danger btn-lg" onclick="iniciarJogo()">Iniciar jogo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+            let moverMouse = false
+
+            document.addEventListener("mousemove", (e)=>{
+                if (!moverMouse){
+                    if (e.movementX === 0 || e.movementY === 0){
+                        let musica = new Audio("sons/index.mp3").play()
+                        moverMouse = true
+                    }
+                }
+            })
+    </script>
+</body>
+</html>
